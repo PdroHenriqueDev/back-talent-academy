@@ -17,7 +17,6 @@ class Middleware {
         if (parts.length !== 2) return res.status(400).json({ status: false, data: null, error: 'Formado do token inválido!' });
 
         const [scheme, tokenHash] = parts;
-        console.log(tokenHash);
         if (scheme !== 'Bearer') return res.status(400).json({ status: false, data: null, error: 'Formado do token inválido!' });
 
         try {

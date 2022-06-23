@@ -40,8 +40,13 @@ export const find = async(id: string): Promise<ResponsePattern> => {
     if (id && Number.isNaN(idIsNumber)) return  response.badRequest<null, string>(400, null, 'Formato do id inválido!');
 
     const data = id
-        ? await getRepository(BookEntity).find({ where: { id: idIsNumber } })
-        : await getRepository(BookEntity).find();
+        ? await getRepository(BookEntity).find({ 
+            where: { id: idIsNumber },
+            relations: ['user_id']
+        })
+        : await getRepository(BookEntity).find({
+            relations: ['user_id']
+        });
     
     return response.successfulRequest<BookEntity | BookEntity[], null>(200, data, null);
     
