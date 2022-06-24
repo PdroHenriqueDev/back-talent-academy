@@ -6,7 +6,7 @@ const router = express.Router();
 const controller = new UserController();
 const auth = new middlewareAuth().auth;
 
-router.post('/create', auth, controller.new);
+router.post('/create', controller.new);
 router.post('/login', controller.login);
 
 router.get('/', auth, controller.find);
